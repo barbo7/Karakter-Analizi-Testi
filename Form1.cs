@@ -9,11 +9,12 @@ namespace Karakter_Analiz_Testi
 {
     public partial class Form1 : Form
     {
-        Thread sure;
-        Veriler veri = new Veriler();
+        Thread sure; // zamanı tutmak için kullanılan değişken
+        Veriler veri = new Veriler(); // verilerin saklanması için kullanılan nesne
 
-        int kacinci = 1,saniye=0, puan=0;
-        
+        int kacinci = 1,saniye=0, puan=0;// sıradaki soru, geçen süre ve puan değişkenleri
+
+
         public Form1()
         {
             InitializeComponent();
@@ -21,11 +22,13 @@ namespace Karakter_Analiz_Testi
 
         void soru()
         {
-            label1.Text = "Soru" + kacinci;
+            label1.Text = "Soru" + kacinci; // sıradaki sorunun numarasını görüntüle
 
-            richTextBox1.Text = veri.question(kacinci);
-            if(kacinci<10)
+            richTextBox1.Text = veri.question(kacinci); // sıradaki sorunun metnini görüntüle
+
+            if(kacinci<=10)
                 buttonGoster(veri.answers(kacinci).Count(), kacinci);//Sorulardaki Şık sayısını button gonder adlı methoda gönderiyorum.
+
 
             if (kacinci > 10)
             {
@@ -33,14 +36,14 @@ namespace Karakter_Analiz_Testi
                 sure.Abort();
                 label1.Text = "";
                 MessageBox.Show("Testiniz bitti Tebrikler!!");
-                buttonsEnable(false);
+                buttonsEnable(false); // şıkları devre dışı bırak
                 richTextBox1.ReadOnly = false ;
 
                 richTextBox1.Font = new Font(richTextBox1.Font.FontFamily, richTextBox1.Font.Size -2, richTextBox1.Font.Style);
 
 
-                richTextBox1.Height = 250;
-                richTextBox1.Text = veri.sonuclar(puan) + "\n\n PUANINIZ= " + puan + "\n Bitirme Süreniz = " + label3.Text.Substring(5) + "Saniye";
+                richTextBox1.Height = 310;
+                richTextBox1.Text = veri.sonuclar(puan) + "\n\n\n\n\n\n\n\n\n\n PUANINIZ= " + puan + "\n Bitirme Süreniz = " + label3.Text.Substring(5) + "Saniye";
                 label3.Text = "";
             }
             kacinci++;
@@ -55,44 +58,59 @@ namespace Karakter_Analiz_Testi
 
         private void button1_Click(object sender, EventArgs e)
         {
+            puan += veri.puanlama(kacinci-1, "a");
+            MessageBox.Show(veri.puanlama(kacinci - 1, "a").ToString());
             soru();
-            puan += veri.puanlama(kacinci, "a");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            puan += veri.puanlama(kacinci-1, "b");
+            MessageBox.Show(veri.puanlama(kacinci - 1, "b").ToString());
+
             soru();
-            puan += veri.puanlama(kacinci, "b");
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            puan += veri.puanlama(kacinci-1, "c");
+            MessageBox.Show(veri.puanlama(kacinci - 1, "c").ToString());
+
             soru();
-            puan += veri.puanlama(kacinci, "c");
+
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            puan += veri.puanlama(kacinci-1, "d");
+            MessageBox.Show(veri.puanlama(kacinci - 1, "d").ToString());
+
             soru();
-            puan += veri.puanlama(kacinci, "d");
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
+            puan += veri.puanlama(kacinci-1, "e");
+            MessageBox.Show(veri.puanlama(kacinci - 1, "e").ToString());
+
             soru();
-            puan += veri.puanlama(kacinci, "e");
+
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
+            puan += veri.puanlama(kacinci-1, "f");
+            MessageBox.Show(veri.puanlama(kacinci - 1, "f").ToString());
+
             soru();
-            puan += veri.puanlama(kacinci, "f");
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
+            puan += veri.puanlama(kacinci-1, "g");
+            MessageBox.Show(veri.puanlama(kacinci - 1, "g").ToString());
+
             soru();
-            puan += veri.puanlama(kacinci, "g");
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -166,8 +184,8 @@ namespace Karakter_Analiz_Testi
             answers.Add(3, new List<string> { "Kollarımı göğsümde katlamış olarak dururum", "Ellerimi sıkarım", "Bir veya iki elimi belime koyarım", "Konuştuğum insanlara dokunur veya ittiririm", "Kulağımla oynar, çeneme dokunur veya saçımı düzeltirim" });
             answers.Add(4, new List<string> { "Dizler katlanmış ve bacaklar birbirine bitişik olarak", "Bacaklar çaprazlanmış olarak", "Bacaklarımı uzatarak", "Bir bacağımı altıma katlayarak" });
             answers.Add(5, new List<string> { "Büyük bir kahkaha atarım", "Gülerim ama fazla sesli değil", "Bir kerelik gülerim", "Sessizce gülümserim" });
-            answers.Add(6, new List<string> { "Herkes sizi fark edecek şekilde gürültülü bir giriş mi yaparsınız?", "Sessiz bir giriş yapıp etrafınızda tanıdığınız birilerine mi bakınırsınız?", "Çok sessizce girip kimsenin sizi fark etmemesine mi gayret edersiniz?" });
-            answers.Add(7, new List<string> { "Bölünmeyi memnuniyetle karşılarım", "Aşırı derecede rahatsız olurum", "Belli olmaz.Bu iki uç arasında değişken davranışlar gösteririm" });
+            answers.Add(6, new List<string> { "Herkes sizi fark edecek şekilde gürültülü gelirsiniz", "Sessiz bir giriş ile tanıdığınıza bakarsınız", "Sessizce girip Fark edilmemeye gayret etmek" });
+            answers.Add(7, new List<string> { "Bölünmeyi memnuniyetle karşılarım", "Aşırı derecede rahatsız olurum", "Belli olmaz. Ruh halime bağlı" });
             answers.Add(8, new List<string> { "Kırmızı veya portakal rengi", "Siyah", "Sarı veya mavi", "Yeşil", "Koyu mavi veya mor", "Beyaz", "Kahverengi veya gri" });
             answers.Add(9, new List<string> { "Sırt üstü yatıp uzanırsınız", "Karnınızın üstüne yatıp uzanırsınız", "Hafif kıvrılmış olarak yan tarafınıza yatarsınız", "Başınızı bir kolunuzun üzerine koyarsınız", "Başınızı yorganın altına kapatırsınız" });
             answers.Add(10, new List<string> { "Düşersiniz", "Kavga eder veya tartışırsınız", "Birilerini veya bir şeyler ararsınız", "Uçar veya yüzersiniz", "Genelde rüya görmezsiniz", "Rüyalarınız daima hoştur" });
@@ -178,7 +196,7 @@ namespace Karakter_Analiz_Testi
         public string sonuclar(int puan)
         {
             string sonuc = "";
-            if (puan >= 31 && puan <= 40)
+            if (puan >= 16 && puan <= 40)
                 sonuc = "İnsanlar sizi mantıklı, ihtiyatlı, dikkatli ve pratik birisi olarak görürler. Sizi zeki, yetenekli ve hünerli ama alçak gönüllü olarak tanırlar. Çok hızlı arkadaşlık kurmayan, ama arkadaşlarına karşı çok sadık olan ve onlardan da aynı şeyi bekleyen birisiniz.";
             else if (puan >= 41 && puan <= 50)
                 sonuc = "İnsanlar sizi taze, canlı, çekici, eğlendirici, pratik ve daima ilginç birisi olarak görürler; her zaman ilgi odağı olan ama çok aşırıya kaçmayacak kadar da dengeli birisi.. İnsanlar sizi ayrıca iyiliksever, düşünceli, anlayışlı ve kendilerini neşelendiren ve rahatlatan birisi olarak tanırlar.";
@@ -188,7 +206,7 @@ namespace Karakter_Analiz_Testi
 
             return sonuc;
         }
-        public int puanlama(int soru, string cevap)
+        public int puanlama(int hangisoru, string cevap)
         {
             List<Tuple<int, string, int>> Puan = new List<Tuple<int, string, int>>();//İlk defa denediğim bir şey. 3 veri tipi tutmak için kullanılıyor.
             //Şuan acaba bir veritabanı mı kulansaydım diye düşünüyorum veri tabanını koduma koyamazdım :p
@@ -217,7 +235,6 @@ namespace Karakter_Analiz_Testi
             Puan.Add(Tuple.Create(5, "b", 4));
             Puan.Add(Tuple.Create(5, "c", 3));
             Puan.Add(Tuple.Create(5, "d", 5));
-            Puan.Add(Tuple.Create(5, "e", 2));
 
             Puan.Add(Tuple.Create(6, "a", 6));
             Puan.Add(Tuple.Create(6, "b", 4));
@@ -250,8 +267,8 @@ namespace Karakter_Analiz_Testi
 
             int p = 0;
             foreach (var i in Puan)
-                if (i.Item1 == soru && i.Item2 == cevap)
-                    p = i.Item3;
+                if (i.Item1 == hangisoru && i.Item2 == cevap)
+                    p += i.Item3;
             return p;
         }
     }
